@@ -1,0 +1,22 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+	<meta charset="utf-8" />
+    <script src="Scripts/jquery-2.2.4.min.js"></script>
+    <script src="Scripts/jquery.signalR-2.2.1.min.js"></script>
+    <script src="/signalr/hubs"></script>
+    <script>
+        $(document).ready(function() {
+            myHub = $.connection.myHub;
+            myHub.client.hello = function () {
+                alert('hello');
+            };
+            $.connection.hub.start();
+        });
+    </script>
+</head>
+<body>
+
+</body>
+</html>
