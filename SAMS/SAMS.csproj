@@ -92,6 +92,8 @@
       <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.Cors, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.Cors.5.2.3\lib\net45\System.Web.Cors.dll</HintPath>
       <Private>True</Private>
@@ -118,12 +120,32 @@
     <Content Include="Scripts\jquery-2.2.4.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Properties\PublishProfiles\dev.hawkbane.biz.pubxml" />
+    <None Include="Properties\PublishProfiles\prod.hawkbane.biz.pubxml" />
+    <None Include="Properties\PublishProfiles\stage.hawkbane.biz.pubxml" />
     <None Include="Scripts\jquery-2.2.4.intellisense.js" />
     <Content Include="Scripts\jquery-2.2.4.js" />
     <Content Include="Scripts\jquery-2.2.4.min.js" />
     <Content Include="Scripts\jquery.signalR-2.2.1.js" />
     <Content Include="Scripts\jquery.signalR-2.2.1.min.js" />
+    <Content Include="SignalR.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>SignalR.edmx</DependentUpon>
+      <LastGenOutput>SignalR.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="SignalR.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>SignalR.edmx</DependentUpon>
+      <LastGenOutput>SignalR.cs</LastGenOutput>
+    </Content>
     <Content Include="Web.config" />
+    <EntityDeploy Include="SignalR.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>SignalR.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="SignalR.edmx.diagram">
+      <DependentUpon>SignalR.edmx</DependentUpon>
+    </Content>
     <None Include="Web.Dev.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -135,9 +157,48 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="annoucement.cs">
+      <DependentUpon>SignalR.tt</DependentUpon>
+    </Compile>
+    <Compile Include="chatLog.cs">
+      <DependentUpon>SignalR.tt</DependentUpon>
+    </Compile>
+    <Compile Include="chatSession.cs">
+      <DependentUpon>SignalR.tt</DependentUpon>
+    </Compile>
+    <Compile Include="locationLookup.cs">
+      <DependentUpon>SignalR.tt</DependentUpon>
+    </Compile>
+    <Compile Include="lookupMonitorUser.cs">
+      <DependentUpon>SignalR.tt</DependentUpon>
+    </Compile>
     <Compile Include="MyHub.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="sashaSession.cs">
+      <DependentUpon>SignalR.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SignalR.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SignalR.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SignalR.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SignalR.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SignalR.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SignalR.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Startup.cs" />
+    <Compile Include="user.cs">
+      <DependentUpon>SignalR.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
