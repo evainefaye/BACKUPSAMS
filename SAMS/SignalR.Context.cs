@@ -30,7 +30,7 @@ namespace SAMS
         public virtual DbSet<chatSession> chatSessions { get; set; }
         public virtual DbSet<locationLookup> locationLookups { get; set; }
         public virtual DbSet<lookupMonitorUser> lookupMonitorUsers { get; set; }
-        public virtual DbSet<sashaSession> sashaSessions { get; set; }
         public virtual DbSet<user> users { get; set; }
+        public virtual DbSet<sashaSession> sashaSessions { get; set; }
     }
 }

@@ -20,13 +20,7 @@ namespace SAMS
             app.UseCors(CorsOptions.AllowAll);
             app.MapSignalR(hubConfiguration);
             GlobalHost.Configuration.MaxIncomingWebSocketMessageSize = null;
-            /* Set the following tables to an initialized state at startup
-
-                sashaSessions (empty)
-                chatSessions (empty)
-                chatHelpers (connectionStatus to notConnected)
-            Database.InitializeTables();
-            */
+            SignalRDB.InitializeDatabase();
         }
     }
 }

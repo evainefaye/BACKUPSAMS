@@ -16,11 +16,9 @@ namespace SAMS
     {
         public string connectionId { get; set; }
         public string userId { get; set; }
-        public string sessionStartTime { get; set; }
-        public string smpSessionId { get; set; }
-        public string milestone { get; set; }
-        public string instance { get; set; }
-    
-        public virtual user user { get; set; }
+        public Nullable<System.DateTime> sessionStartTime { get; set; }
+        public string flowName { get; set; }
+        public string stepName { get; set; }
+        public Nullable<System.DateTime> stepNameStartTime { get; set; }
     }
 }

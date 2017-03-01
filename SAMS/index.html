@@ -3,20 +3,36 @@
 <head>
     <title></title>
 	<meta charset="utf-8" />
-    <script src="Scripts/jquery-2.2.4.min.js"></script>
-    <script src="Scripts/jquery.signalR-2.2.1.min.js"></script>
+    <!-- Start Connect to SignalR -->
+    <script src="/Scripts/jquery-2.2.4.min.js"></script>
+    <script src="/Scripts/jquery.signalR-2.2.1.min.js"></script>
     <script src="/signalr/hubs"></script>
-    <script>
-        $(document).ready(function() {
-            myHub = $.connection.myHub;
-            myHub.client.hello = function () {
-                alert('hello');
-            };
-            $.connection.hub.start();
-        });
-    </script>
+    <!-- End Connect to SignalR -->
+
+    <!-- Start Add JQWidgets -->
+    <script src="/Scripts/jqwidgets/jqx-all.js"></script>
+    <link type="text/css" rel="stylesheet" href="/Scripts/jqwidgets/styles/jqx.base.css" />
+    <link type="text/css" rel="stylesheet" href="/Scripts/jqwidgets/styles/jqx.darkblue.css" />
+    <!-- End JQWidgets -->
+
+    <!-- Add Moment.js -->
+    <script src="/Scripts/moment.js"></script>
+    <!-- End Moment -->
+
+    <!-- Start Load Site specific CSS / JS-->
+    <link type="text/css" rel="stylesheet" href="/css/StyleSheet.css" />
+    <script src="/js/JavaScript.js"></script>
+    <!-- End Load Site Specific -->
+
 </head>
 <body>
-
+    <div id='divLoad'></div>
+    <div id='messageNotification'>
+        <div id='messageNotificationContent'></div>
+    </div>
+    <div id='notificationContainer'></div>
+    <div id="mainContent">
+        <div id="sashaSessions"></div>
+    </div>
 </body>
 </html>

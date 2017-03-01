@@ -17,24 +17,46 @@ namespace SAMS
 
     public class MyHub : Hub
     {
-        public void Hello()
+
+        //*** FUNCTIONS RUN ON MONITOR ***
+
+        // Check if user is authenticated, prompt for login if not
+        public void CheckAuthenticated()
         {
-            Clients.All.hello();
+            if (Context.User.Identity.IsAuthenticated)
+            {
+                string userId = Context.User.Identity.Name.GetUserId();
+                string connectionId = Context.ConnectionId;
+                Clients.Caller.userId = userId;
+                Clients.Caller.connectionId = connectionId;
+                SignalRDB.lookupMonitorUsers(userId, connectionId);
+            }
+            else
+            {
+                Clients.Caller.getUserId();
+            }
         }
 
-        /* When a client disconnects attempts to remove its record from the SashaSessions Database and calls for an update of sasha sessions on all monitor clients */
-        public override Task OnConnected()
+        public void AuthenticatedUser(string userId)
         {
             string connectionId = Context.ConnectionId;
-            using (SignalR db = new SignalR())
+            Clients.Caller.userId = userId;
+            Clients.Caller.connectionId = connectionId;
+            SignalRDB.lookupMonitorUsers(userId, connectionId);
+        }
+
+
+
+        // Remove client record from Database when disconnected
+        public override Task OnDisconnected(bool stopCalled)
+        {
+            string connectionId = Context.ConnectionId;
+            if (SignalRDB.RemoveSashaSessionRecord(connectionId))
             {
-                user user = new user();
-                user.userId = connectionId;
-                user.userName = connectionId;
-                db.users.Add(user);
-                db.SaveChanges();
+                Clients.Group(groupNames.Monitor).removeSashaSession(connectionId);
             }
-            return base.OnConnected();
+            SignalRDB.UpdateChatHelper(connectionId);
+            return base.OnDisconnected(stopCalled);
         }
 
     }

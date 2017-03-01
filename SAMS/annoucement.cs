@@ -19,7 +19,5 @@ namespace SAMS
         public string enteredBy { get; set; }
         public string announcementText { get; set; }
         public string seenBy { get; set; }
-    
-        public virtual user user { get; set; }
     }
 }

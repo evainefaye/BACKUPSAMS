@@ -24,7 +24,5 @@ namespace SAMS
         public string broadcast { get; set; }
         public string pushChat { get; set; }
         public string saveDictionary { get; set; }
-    
-        public virtual user user { get; set; }
     }
 }
